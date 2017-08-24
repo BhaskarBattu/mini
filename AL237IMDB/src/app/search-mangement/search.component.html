@@ -1,0 +1,173 @@
+
+<body>
+
+<table  align="center">
+  <tr>
+    <td colspan="4">
+      <h1> Offers Bonanja</h1>
+      <h2>Hello, You are watching  {{this.parseSearch}}</h2>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div *ngIf="searchResponsePrint">
+        <img class="image" src="{{searchResponsePrint[0].imagePath}} " alt="image"/>
+      </div>
+    </td>
+  <td width="80%" height="100%" align="cneter">
+    <div *ngFor="let itemsOfSearch of searchResponsePrint">
+      <div class="module movie">
+        <div> <span style="color: rebeccapurple;padding-right: 5%;padding-left: 15%;font-size: 120%">{{itemsOfSearch.actorProfession}} : </span> <span style="color: darkred;font-size: 150%">{{itemsOfSearch.actors}}</span><br></div>
+      </div><br>
+    </div>
+    <div *ngIf="searchResponsePrint">
+      <span style="padding-left: 25%;padding-bottom: 100%; color: #039be5">GenreType:</span>:<span style="padding-right:15%;color: black;font-size: 100%;padding-left: 2%;color: black">{{searchResponsePrint[0].genreType}}</span>
+    </div>
+
+  </td>
+</tr>
+
+  <tr>
+    <td colspan="1">
+
+    </td>
+    <td align="center">
+      <div><span style="padding-left: 5%;padding-top: 10%; color: firebrick">Average Rating For Movie : </span>
+        <div *ngFor="let movieloop of moviesList">
+          <div *ngIf="this.parseSearch===(movieloop.movieName)">
+            <div *ngIf="4.5<movieloop.avgRating && 5>=movieloop.avgRating ">
+              <div><img src="assets/star_5.jpg" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="4<movieloop.avgRating && 4.5>=movieloop.avgRating ">
+              <div><img src="assets/star_4.5.png" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="3.5<movieloop.avgRating && 4>=movieloop.avgRating ">
+              <div><img src="assets/star_4.png" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="3<movieloop.avgRating && 3.5>=movieloop.avgRating ">
+              <div><img src="assets/star_3.5.png" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="2.5<movieloop.avgRating && 3>=movieloop.avgRating ">
+              <div><img src="assets/star_3.jpg" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="2<movieloop.avgRating && 2.5>=movieloop.avgRating ">
+              <div><img src="assets/star_2.5.png" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="1.5<movieloop.avgRating && 2>=movieloop.avgRating ">
+              <div><img src="assets/star_2.png" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="1<movieloop.avgRating && 1.5>=movieloop.avgRating ">
+              <div><img src="assets/stat_1.jpg" width="40%" height="20%"></div>
+            </div>
+            <span style="padding-left: 5%; color: firebrick">The average Rating is : </span><span style="font-size: 100%;padding-right: 15%;color: black">  {{movieloop.avgRating | number: '1.2-2'}}</span>
+          </div>
+        </div>
+        <div *ngFor="let tvshowloop of tvShowsList">
+          <div *ngIf="this.parseSearch===(tvshowloop.tvShowName)">
+            <div *ngIf="4.5<tvshowloop.avgRating && 5>=tvshowloop.avgRating ">
+              <div><img src="assets/star_5.jpg" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="4<tvshowloop.avgRating && 4.5>=tvshowloop.avgRating ">
+              <div><img src="assets/star_4.5.png" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="3.5<tvshowloop.avgRating && 4>=tvshowloop.avgRating ">
+              <div><img src="assets/star_4.png" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="3<tvshowloop.avgRating && 3.5>=tvshowloop.avgRating ">
+              <div><img src="assets/star_3.5.png" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="2.5<tvshowloop.avgRating && 3>=tvshowloop.avgRating ">
+              <div><img src="assets/star_3.jpg" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="2<tvshowloop.avgRating && 2.5>=tvshowloop.avgRating ">
+              <div><img src="assets/star_2.5.png" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="1.5<tvshowloop.avgRating && 2>=tvshowloop.avgRating ">
+              <div><img src="assets/star_2.png" width="40%" height="20%"></div>
+            </div>
+            <div *ngIf="1<tvshowloop.avgRating && 1.5>=tvshowloop.avgRating ">
+              <div><img src="assets/stat_1.jpg" width="40%" height="20%"></div>
+            </div>
+            <span style="padding-left: 5%; color: firebrick">The average Rating is : </span><span style="font-size: 100%;padding-right: 15%;color: black">  {{tvshowloop.avgRating | number: '1.2-2'}}</span>
+          </div>
+        </div>
+       </div>
+    </td>
+  </tr>
+
+</table>
+<table  width="100%" style="padding-top: 10%">
+  <tr>
+    <td>
+      <h2 style="color: #0b5849"> Scroll Down For Comments</h2>
+    </td>
+    <td>
+      <!--<button (click)="goRating(this.parsetvshowname, this.prsetvshowimagepath)">Want To Give Rating</button>-->
+      <button (click)="goRating(this.parseSearch, searchResponsePrint[0].imagePath)">Want To Give Rating</button>
+    </td>
+  </tr>
+</table>
+
+<!--Movie Comments-->
+
+<div *ngFor="let comment of searchCommentResponsePrint | paginate:{ itemsPerPage: 3, currentPage: p }">
+  <table width="100%"  style="padding-top: 10%;">
+    <tr>
+      <td>
+        <p style="color: darkred">{{comment.firstName}}</p>
+      </td>
+      <td>
+        <p style="color: darkred">{{comment.lastName}}</p>
+      </td>
+      <td style="width: 37%;padding-left:2%; color: black">
+        <p>Rating Given Date: {{comment.date}}</p>
+      </td>
+      <td width="20%"><span style="color:blue"> Rating is: {{comment.rating}}</span></td>
+      <td style="">
+        <div>
+          <div *ngIf="4.5<comment.rating && 5>=comment.rating ">
+            <div><img src="assets/star_5.jpg" width="40%" height="20%"></div>
+          </div>
+          <div *ngIf="4<comment.rating && 4.5>=comment.rating ">
+            <div><img src="assets/star_4.5.png" width="40%" height="20%"></div>
+          </div>
+          <div *ngIf="3.5<comment.rating && 4>=comment.rating ">
+            <div><img src="assets/star_4.png" width="40%" height="20%"></div>
+          </div>
+          <div *ngIf="3<comment.rating && 3.5>=comment.rating ">
+            <div><img src="assets/star_3.5.png" width="40%" height="20%"></div>
+          </div>
+          <div *ngIf="2.5<comment.rating && 3>=comment.rating ">
+            <div><img src="assets/star_3.jpg" width="40%" height="20%"></div>
+          </div>
+          <div *ngIf="2<comment.rating && 2.5>=comment.rating ">
+            <div><img src="assets/star_2.5.png" width="40%" height="20%"></div>
+          </div>
+          <div *ngIf="1.5<comment.rating && 2>=comment.rating ">
+            <div><img src="assets/star_2.png" width="40%" height="20%"></div>
+          </div>
+          <div *ngIf="1<comment.rating && 1.5>=comment.rating">
+            <div><img src="assets/stat_1.jpg" width="40%" height="20%"></div>
+          </div>
+
+        </div>
+
+      </td>
+
+
+    </tr>
+    <tr style="width: 2%">
+      <td colspan="5">
+        <p style="color: purple">Comment:</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5">
+        <p style="color: black">{{comment.comments}}</p>
+      </td>
+    </tr>
+  </table>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<button (click)="goBack()">Back</button>
+</body>

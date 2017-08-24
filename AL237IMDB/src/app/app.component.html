@@ -1,0 +1,46 @@
+
+<div  style="background-color: darkgrey;padding-top: 2px;height: 91px" class="ddsmoothmenu">
+  <ul>
+    <li><img  id="image" src="assets/imdb.jpg" width="100%" alt="Smiley face"></li>
+    <li><select class="selection" style="color: red">
+      <option value="all" >All</option>
+      <option value="movies">Movies</option>
+      <option value="tvshows">Tvshows</option>
+      <option value="acters">Celebrities</option>
+    </select>
+    </li>
+    <li>
+      <input type="text"  #searchBox id="textboxid" (keyup)="search(searchBox.value)" placeholder="Search" />
+      <div style="height: 23px;">
+        <div  *ngFor="let searchitems of searchTh"  (keydown)="searchitems" routerLinkActive="active" style="text-decoration: underline;" (click)="gotoDetail(searchitems.searchitem)" >
+          <div style="color: black;background-color: white;text-align: left;">{{searchitems.searchitem}}</div>
+          <!--<div *ngIf="search!=null; else elseBlock" style="color: black;background-color: white;text-align: left;">{{search.searchitem}}</div>-->
+          <!--<ng-template #elseBlock  style="color: black;background-color: white;text-align: left;">No results</ng-template>-->
+        </div>
+        <div *ngIf="searchBox.value && !noresult && searchTh && !searchTh.length " style="color: black;background-color: white;text-align: left;">No results</div>
+      </div>
+    </li>
+    <li><a *ngIf="!this.isloginers" routerLink="/signin" routerLinkActive="active">Signin</a></li>
+    <li><a *ngIf="this.isloginers" ><small>{{username}}</small></a></li>
+    <li><a *ngIf="!this.isloginers" routerLink="/registration" routerLinkActive="active">Registration</a></li>
+
+  </ul>
+  <br style="clear: left" />
+</div>
+<div  style="background-color: darkgrey;padding-top: 2px" class="dashboardmenu">
+  <ul>
+    <li><a style="padding: 14px"  routerLink="/movies"  routerLinkActive="active">Movies</a></li>
+    <li><a style="padding: 14px" routerLink="/tvshows" routerLinkActive="active">TvShows</a></li>
+    <li><a style="padding: 14px" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+    <li><a *ngIf="!this.isloginers"  style="padding: 14px" routerLink="/registration" routerLinkActive="active">Registration</a></li>
+    <li><a *ngIf="this.isloginers"   style="padding: 14px" routerLink="/logout" routerLinkActive="active"><small>Logout</small></a></li>
+  </ul>
+  <br style="clear: left" />
+</div>
+<table class="tblcolor">
+  <tr>
+    <td>
+      <router-outlet></router-outlet>
+    </td>
+  </tr>
+</table>

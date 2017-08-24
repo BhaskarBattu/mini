@@ -1,0 +1,153 @@
+
+<body>
+
+<table  align="center">
+    <tr>
+        <td colspan="4">
+            <h1>Movies Bonanja</h1>
+            <h2>Hello, You are watching movie {{this.parseMovie}}</h2>
+        </td>
+    </tr>
+  <tr>
+    <td>
+      <div>
+          <img class="image" src="{{this.parseMoviePath}}"/>
+      </div>
+    </td><!--
+    <td style="text-align: right; width: 100%">
+       <h2> Movie Name:{{this.parseMovie}}</h2>
+    </td>-->
+    <td width="80%" height="100%" align="cneter">
+            <div *ngFor="let movies of movieResponsePrint ">
+                <div class="module movie">
+                    <div> <span style="color: rebeccapurple;padding-right: 5%;padding-left: 15%;font-size: 120%">{{movies.actorProfession}} : </span> <span style="color: darkred;font-size: 150%">{{movies.actors}}</span><br></div>
+                </div><br>
+            </div>
+      <div *ngIf="movieResponsePrint">
+        <span style="padding-left: 25%;padding-bottom: 100%; color: #039be5">GenreType:</span>:<span style="padding-right:15%;color: black;font-size: 100%;padding-left: 2%;color: black">{{movieResponsePrint[0].genreType}}</span>
+      </div>
+
+    </td>
+</tr>
+    <tr>
+        <td colspan="1">
+
+        </td>
+        <td align="center">
+            <div><span style="padding-left: 5%;padding-top: 10% color: firebrick">Average Movie Rating For Movie : </span>
+                <div *ngIf="4.5<this.parseAvgRating && 5>=this.parseAvgRating ">
+                    <div><img src="assets/star_5.jpg" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="4<this.parseAvgRating && 4.5>=this.parseAvgRating ">
+                    <div><img src="assets/star_4.5.png" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="3.5<this.parseAvgRating && 4>=this.parseAvgRating ">
+                    <div><img src="assets/star_4.png" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="3<this.parseAvgRating && 3.5>=this.parseAvgRating ">
+                    <div><img src="assets/star_3.5.png" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="2.5<this.parseAvgRating && 3>=this.parseAvgRating ">
+                    <div><img src="assets/star_3.jpg" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="2<this.parseAvgRating && 2.5>=this.parseAvgRating ">
+                    <div><img src="assets/star_2.5.png" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="1.5<this.parseAvgRating && 2>=this.parseAvgRating ">
+                    <div><img src="assets/star_2.png" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="1<this.parseAvgRating && 1.5>=this.parseAvgRating ">
+                    <div><img src="assets/star_1.jpg" width="40%" height="20%"></div>
+                </div>
+               <span style="padding-left: 5%; color: firebrick">The average Rating is : </span><span style="font-size: 100%;padding-right: 15%;color: black">  {{this.parseAvgRating | number: '1.2-2'}}</span>
+                </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="1">
+
+        </td>
+        <td align="center">
+            <div><span style="padding-left: 5%; color: firebrick">The number of People Gave Rating is : </span><span style="font-size: 100%;padding-right: 15%;color: black">  {{this.parseRatingMembersCount}}</span></div>
+
+        </td>
+    </tr>
+</table>
+<table  width="100%" style="padding-top: 10%">
+    <tr>
+        <td>
+           <h2 style="color: #0b5849"> Scroll Down For Movie Comments</h2>
+        </td>
+        <td>
+            <button (click)="goRating(this.parseMovie, this.parseMoviePath)">Want To Give Rating</button>
+        </td>
+    </tr>
+</table>
+
+
+
+<!--Movie Comments-->
+
+<div *ngFor="let comment of movieCommentResponsePrint | paginate:{ itemsPerPage: 3, currentPage: p }">
+<table width="100%"  style="padding-top: 10%;">
+    <tr>
+        <td>
+            <p style="color: darkred">{{comment.firstName}}</p>
+        </td>
+        <td>
+            <p style="color: darkred">{{comment.lastName}}</p>
+        </td>
+        <td style="width: 37%;padding-left:2%; color: black">
+            <p>Rating Given Date: {{comment.date}}</p>
+        </td>
+        <td width="20%"><span style="color:blue">Rating is: {{comment.rating}}</span></td>
+        <td style="">
+            <div>
+                <div *ngIf="4.5<comment.rating && 5>=comment.rating ">
+                    <div><img src="assets/star_5.jpg" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="4<comment.rating && 4.5>=comment.rating ">
+                    <div><img src="assets/star_4.5.png" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="3.5<comment.rating && 4>=comment.rating ">
+                    <div><img src="assets/star_4.png" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="3<comment.rating && 3.5>=comment.rating ">
+                    <div><img src="assets/star_3.5.png" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="2.5<comment.rating && 3>=comment.rating ">
+                    <div><img src="assets/star_3.jpg" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="2<comment.rating && 2.5>=comment.rating ">
+                    <div><img src="assets/star_2.5.png" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="1.5<comment.rating && 2>=comment.rating ">
+                    <div><img src="assets/star_2.png" width="40%" height="20%"></div>
+                </div>
+                <div *ngIf="1<this.parseAvgRating && 1.5>=this.parseAvgRating ">
+                    <div><img src="assets/star_1.jpg" width="40%" height="20%"></div>
+                </div>
+
+            </div>
+
+        </td>
+
+
+    </tr>
+    <tr style="width: 2%">
+        <td colspan="5">
+            <p style="color: purple">Comment:</p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5">
+            <p style="color: black">{{comment.comments}}</p>
+        </td>
+    </tr>
+</table>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<button (click)="goBack()">Back</button>
+
+</body>
+

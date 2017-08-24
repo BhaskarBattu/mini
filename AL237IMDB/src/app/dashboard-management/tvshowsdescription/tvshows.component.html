@@ -1,0 +1,14 @@
+<h2>Top Rated Tvshows</h2>
+<table ><tr><td style="padding: 19px">
+  <div class="container">
+    <div class="grid grid-pad">
+      <a *ngFor="let tvShowloop of tvShowsList" (click)="onClickTvShow(tvShowloop.tvShowsID, tvShowloop.tvShowName,tvShowloop.tvshowImagePath, tvShowloop.avgRating, tvShowloop.memberscount)"   routerLinkActive="active" class="col-1-4">
+        <div class="module tvshow">
+          <h4><img class="image" src="{{tvShowloop.tvshowImagePath}}"/></h4>
+        </div>
+      </a>
+    </div>
+  </div>
+</td>
+</tr>
+</table>

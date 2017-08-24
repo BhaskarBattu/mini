@@ -1,0 +1,16 @@
+<h2>Top Rated Movies</h2>
+<table>
+  <tr>
+    <td style="padding: 19px">
+      <div class="container">
+          <div class="grid grid-pad">
+            <a *ngFor="let movieloop of moviesTotalList" (click)="onClickMovie(movieloop.movieId, movieloop.movieName, movieloop.imagePath, movieloop.avgRating, movieloop.count)"  routerLinkActive="active" class="col-1-4">
+              <div class="module movie">
+                <h4><img class="image" src="{{movieloop.imagePath}}"/></h4>
+              </div>
+            </a>
+          </div>
+        </div>
+    </td>
+  </tr>
+</table>

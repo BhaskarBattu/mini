@@ -1,0 +1,50 @@
+
+
+<body>
+<div class="container" >
+  <h1>Rating Giving for {{this.parseGiveRatingName}}</h1>
+</div>
+<div>
+  <div>
+    <img class="image" src="{{this.parseGiveRatingImagePath}}"/>
+  </div>
+</div>
+<div class="container">
+<form [formGroup]= "commentForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label style="color: black">Comments</label>
+    <textarea class="form-control" id="textboxsize" #refName   placeholder="comments write here" formControlName="textareacomments"></textarea>
+    <div *ngIf="commentForm.controls['textareacomments'].hasError('required')" class="alert alert-danger">
+      please TYPE a comments
+    </div>
+  </div>
+
+ <div class="form-group">
+    <p>Rating : </p>
+    <fieldset class="rate">
+      <input type="radio" id="rating10" formControlName="rating" value="5" /><label for="rating10" title="5 stars"></label>
+      <input type="radio" id="rating9" formControlName="rating" value="4.5" /><label class="half" for="rating9" title="4 1/2 stars"></label>
+      <input type="radio" id="rating8" formControlName="rating" value="4" /><label for="rating8" title="4 stars"></label>
+      <input type="radio" id="rating7" formControlName="rating" value="3.5" /><label class="half" for="rating7" title="3 1/2 stars"></label>
+      <input type="radio" id="rating6" formControlName="rating" value="3" /><label for="rating6" title="3 stars"></label>
+      <input type="radio" id="rating5" formControlName="rating" value="2.5" /><label class="half" for="rating5" title="2 1/2 stars"></label>
+      <input type="radio" id="rating4" formControlName="rating" value="2" /><label for="rating4" title="2 stars"></label>
+      <input type="radio" id="rating3" formControlName="rating" value="1.5" /><label class="half" for="rating3" title="1 1/2 stars"></label>
+      <input type="radio" id="rating2" formControlName="rating" value="1" /><label for="rating2" title="1 star"></label>
+      <input type="radio" id="rating1" formControlName="rating" value="0.5" /><label class="half" for="rating1" title="1/2 star"></label>
+      <input type="radio" id="rating0" formControlName="rating" value="0" /><label for="rating0" title="No star"></label>
+    </fieldset>
+   <div *ngIf="commentForm.controls['rating'].hasError('required')" class="alert alert-danger">
+     please give rating
+   </div>
+
+</div>
+  <div class="clearfix">
+    <button type="reset" class="cancelbtn">Reset</button>
+    <button type="submit" [disabled]="!commentForm.valid" class="signupbtn">Comment</button>
+  </div>
+</form>
+</div>
+<button (click)="goBack()">Back</button>
+</body>
+
